@@ -4,7 +4,7 @@ const Feed = ({ posts }) => {
     return (
         <>
             {posts.map(post => (
-                <Post key={posts.id} post={post} />
+                <Post key={post.id} post={post} />
             ))}
         </>
     )
