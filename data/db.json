@@ -2,9 +2,15 @@
   "posts": [
     {
       "id": 1,
-      "title": "dd",
-      "datetime": "September 28, 2024 5:15:21 PM",
-      "body": "dd"
+      "title": "React App",
+      "datetime": "September 28, 2024 5:22:48 PM",
+      "body": "Discover how to develop your first application"
+    },
+    {
+      "id": 2,
+      "title": "Use Easy Peasy",
+      "datetime": "September 28, 2024 5:24:19 PM",
+      "body": "Easy Peasy is an abstraction of Redux. It provides a reimagined API focussing on developer experience, allowing you to quickly and easily manage your state, whilst leveraging the strong architectural guarantees and providing integration with the extensive eco-system that Redux has to offer."
     }
   ]
 }
