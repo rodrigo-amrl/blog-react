@@ -9,29 +9,32 @@ import Missing from "./pages/Missing"
 import PostPage from "./pages/PostPage"
 import About from "./pages/About"
 import { Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
-import useWindowsSize from './hooks/useWindowsSize';
-import { DataProvider } from './context/DataContext';
+import useAxiosFech from './hooks/useAxiosFetch';
+import { useStoreActions } from 'easy-peasy';
+import { useEffect } from 'react';
 
 function App() {
-  const [search, setSearch] = useState('')
-  const { width } = useWindowsSize()
+  const setPosts = useStoreActions((actions) => actions.setPosts)
+  const { data, fetchError, isLoading } = useAxiosFech('http://localhost:3500/posts')
+
+  
+  useEffect(() => {
+    setPosts(data)
+  }, [data, setPosts])
 
 
   return (
     <div className="App">
       <Header title="React JS Blog" />
-      <DataProvider>
-        <Nav />
-        <Routes>
-          <Route exact path='/' element={<Home />} />
-          <Route path='/post' element={<NewPost />} />
-          <Route path='/edit/:id' element={<EditPost />} />
-          <Route path='/post/:id' element={<PostPage />} />
-          <Route path='about' element={<About />} />
-          <Route path='*' element={<Missing />} />
-        </Routes>
-      </DataProvider>
+      <Nav />
+      <Routes>
+        <Route exact path='/' element={<Home isLoading={isLoading} fetchError={fetchError} />} />
+        <Route path='/post' element={<NewPost />} />
+        <Route path='/edit/:id' element={<EditPost />} />
+        <Route path='/post/:id' element={<PostPage />} />
+        <Route path='about' element={<About />} />
+        <Route path='*' element={<Missing />} />
+      </Routes>
       <Footer />
     </div>
   );
